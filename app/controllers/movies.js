@@ -1,3 +1,4 @@
+//File Name: movies.js, Student Name: Aqeish Parvez, Student ID: 301225795, Date: February 14th, 2023
 import movieModel from '../models/movies.js';
 import { UserDisplayName } from '../utils/index.js';
 
@@ -71,7 +72,7 @@ export function ProcessMoviesEditPage(req, res, next){
         runtime: req.body.runtime
     });
 
-    movieModel.updateOne({_id: id}, editMovie, function(error, Movie){
+    movieModel.updateOne({_id: id}, newMovie, function(error, Movie){
         if(error){
             console.error(error);
             res.end(error);

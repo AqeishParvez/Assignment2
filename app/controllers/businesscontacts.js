@@ -1,6 +1,6 @@
+//File Name: businesscontacts.js, Student Name: Aqeish Parvez, Student ID: 301225795, Date: February 14th, 2023
 import businessContactsModel from '../models/businesscontacts.js';
 import { UserDisplayName } from '../utils/index.js';
-
 
 //R ead operations
 export function DisplayContactList(req, res, next){
@@ -10,10 +10,10 @@ export function DisplayContactList(req, res, next){
             res.end(error);
         }
 
-        console.log(businessContactsCollection);
-
         res.render('index', {title: 'Business Contacts List', page: 'businesscontacts/list', businesscontacts: businessContactsCollection, displayName: UserDisplayName(req)})
-    })
+    }).sort({name: 'asc'});
+
+    //found the solution for sorting at the link https://www.reddit.com/r/node/comments/7l83qf/nodejs_sorting_object_mongoose_express_ejs/
 }
 
 
@@ -24,12 +24,7 @@ export function DisplayContactsAddPage(req, res, next){
 
 export function ProcessContactsAddPage(req, res, next){
     let newContact = businessContactsModel({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        address: req.body.address,
-        city: req.body.city,
-        province: req.body.province,
-        postalcode: req.body.postalcode,
+        name: req.body.name,
         phonenumber: req.body.phonenumber,
         email: req.body.email,
     });
@@ -65,14 +60,9 @@ export function ProcessContactsEditPage(req, res, next){
 
     let id = req.params.id;
 
-    let newContact = businessContactsModel({
+    let editContact = businessContactsModel({
         _id: req.body.id,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        address: req.body.address,
-        city: req.body.city,
-        province: req.body.province,
-        postalcode: req.body.postalcode,
+        name: req.body.name,
         phonenumber: req.body.phonenumber,
         email: req.body.email,
     });
