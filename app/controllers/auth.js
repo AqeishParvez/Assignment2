@@ -1,3 +1,4 @@
+//File Name: auth.js, Student Name: Aqeish Parvez, Student ID: 301225795, Date: February 14th, 2023
 import express from 'express';
 
 import passport from 'passport';
